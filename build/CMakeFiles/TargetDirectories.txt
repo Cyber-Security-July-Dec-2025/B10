@@ -1,0 +1,5 @@
+/home/iiita/SecureChat/build/CMakeFiles/SecureChatApp.dir
+/home/iiita/SecureChat/build/CMakeFiles/edit_cache.dir
+/home/iiita/SecureChat/build/CMakeFiles/rebuild_cache.dir
+/home/iiita/SecureChat/build/CMakeFiles/SecureChatApp_autogen_timestamp_deps.dir
+/home/iiita/SecureChat/build/CMakeFiles/SecureChatApp_autogen.dir

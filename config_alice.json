@@ -1,0 +1,13 @@
+{
+  "listen_ip": "0.0.0.0",
+  "listen_port": 5000,
+  "peer_ip": "172.20.22.101",
+  "peer_port": 5001,
+  "rsa_private_der": "keys/alice_private.der",
+  "my_public_der": "keys/alice_public.der",
+  "peer_public_der": "keys/bob_public.der",
+  "rsa_key_bits": 2048,
+  "aes_key_size_bytes": 32,
+  "aes_gcm_iv_bytes": 12,
+  "aes_gcm_tag_bytes": 16
+}
