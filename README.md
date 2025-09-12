@@ -17,6 +17,7 @@ It allows two peers to exchange messages securely using asymmetric cryptography,
 ---
 
 ## Project Structure
+```bash
 SecureChat/
 │── CMakeLists.txt # Build system configuration
 │── README.md # Project documentation
@@ -35,7 +36,7 @@ SecureChat/
 ├── resources/ # (Optional) icons, UI assets
 └── build/ # Build output (created after compilation)
 
----
+```
 
 ##  Dependencies
 Before building, make sure you have the following installed:
@@ -70,7 +71,9 @@ make -j4
 
 This generates the SecureChatApp binary inside build/.
 
-### Running the Application
+
+
+## Running the Application
 
 You need two systems (or two terminals):
 
@@ -93,7 +96,9 @@ On System B (Client)
 
 Enter your private key and peer’s public key in code/config.
 
-Click Connect, enter Server’s IP + Port (e.g., 192.168.1.5:5000).
+Click Connect, enter Server’s IP + Port (e.g., 192.168.1.5:5000).'
+
+
 
 ## Usage Guide
 
@@ -111,6 +116,8 @@ Peer: Hi!
 
 Click Disconnect to close the connection.
 
+
+
 ##  GUI Overview
 
 Connect – Establish connection with peer.
@@ -119,15 +126,41 @@ Send – Send encrypted message.
 
 Disconnect – Close the connection.
 
+Input Textbox - To type the message
+
 Message Display – Shows ongoing chat history.
 
-## Security
 
-Uses asymmetric cryptography (CryptoManager) for key exchange.
+##  Security
 
-Messages are encrypted before sending and decrypted upon receiving.
+SecureChat ensures **end-to-end encrypted peer-to-peer communication** using a hybrid encryption approach:
 
-If decryption fails → "!! Decryption failed !!" is shown.
+1. **Key Management**
+   - Each peer has a **unique RSA public-private key pair** (manually generated beforehand).
+   - Each peer stores:
+     - Its **own private key** (never shared).
+     - The **public key of the peer**.
+   - Both keys are stored in a single **configuration file** (`config.json`) at the project root.
+
+2. **Message Encryption Process**
+   - For each outgoing message:
+     - A fresh **random AES session key** is generated.
+     - The message is encrypted using **AES** with this session key.
+     - The AES session key is then encrypted using the **receiver’s RSA public key**.
+     - Both the **encrypted message** and **encrypted session key** are sent over the socket.
+
+3. **Message Decryption Process**
+   - On receiving a message:
+     - The AES session key is decrypted using the **receiver’s RSA private key**.
+     - The message is then decrypted using this AES session key.
+   - If decryption fails, the application displays:  
+     `!! Decryption failed !!`
+
+4. **Design Simplifications**
+   - IP address, port number, RSA key sizes, and cryptographic parameters are stored in `config.json` — not entered via GUI.
+   - This avoids user errors and ensures consistent configurations across both peers.
+
+
 
 ## Troubleshooting
 
@@ -150,6 +183,7 @@ Both systems are on same LAN
 Firewall allows chosen port
 
 Correct IP address is used
+
 
 ## Contributors
 1. Tanya Singh (IIT2023171)
