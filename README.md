@@ -48,32 +48,49 @@ Before building, make sure you have the following installed:
 
 ### Install on Ubuntu/Debian:
 ```bash
+# 1. Start WSL
+wsl
+
+# 2. Update package list
 sudo apt update
-sudo apt install build-essential cmake qtbase5-dev qt5-qmake \
-                 qtmultimedia5-dev libqt5widgets5 \
-                 libqt5network5 nlohmann-json3-dev
+
+# 3. Install compiler + build tools
+sudo apt install -y build-essential cmake git
+
+# 4. Install Qt6 (Widgets + Network + dev tools)
+sudo apt install -y qt6-base-dev qt6-base-dev-tools
+
+# 5. Install Crypto++ library
+sudo apt install -y libcrypto++-dev libcrypto++-doc libcrypto++-utils
+
 
 ```
 ### Build Instructions
- 1. Clone Repository
-git clone https://github.com/<your-username>/SecureChat.git
-cd SecureChat
+```bash
+# Copy project into WSL home directory
+cd ~
+cp -r /mnt/c/Users/LENOVO/Downloads/SecureChat ~/SecureChat
+cd ~/SecureChat
 
-2. Create Build Directory
+# Remove old build if exists
+rm -rf build
 mkdir build && cd build
 
- 3. Configure CMake
+# Configure & build
 cmake ..
+make -j$(nproc)
 
- 4. Compile
-make -j4
-
+```
 
 This generates the SecureChatApp binary inside build/.
 
 
 
 ## Running the Application
+```bash
+cd ..
+./build/SecureChatApp config_bob.json
+```
 
 You need two systems (or two terminals):
 
