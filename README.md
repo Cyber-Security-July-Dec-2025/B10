@@ -19,22 +19,33 @@ It allows two peers to exchange messages securely using asymmetric cryptography,
 ## Project Structure
 ```bash
 SecureChat/
-│── CMakeLists.txt # Build system configuration
-│── README.md # Project documentation
+│── CMakeLists.txt             # Build system configuration
+│── Makefile                    # Optional convenience wrapper
+│── README.md                   # Project documentation
+│── config_alice.json           # Configuration for peer “Alice”
+│── config_bob.json             # Configuration for peer “Bob”
 │
-├── include/ # Header files
-│ ├── CryptoManager.h
-│ ├── NetworkManager.h
-│ └── MainWindow.h
+├── include/                     # Header files
+│   ├── CryptoManager.h
+│   ├── NetworkManager.h
+│   └── MainWindow.h
 │
-├── src/ # Source files
-│ ├── main.cpp
-│ ├── CryptoManager.cpp
-│ ├── NetworkManager.cpp
-│ └── MainWindow.cpp
+├── src/                         # Source files
+│   ├── main.cpp
+│   ├── CryptoManager.cpp
+│   ├── NetworkManager.cpp
+│   └── MainWindow.cpp
 │
-├── resources/ # (Optional) icons, UI assets
-└── build/ # Build output (created after compilation)
+├── keys/                        # RSA key-pair files, public/private for each peer
+│   ├── alice_private.pem
+│   ├── alice_public.pem
+│   ├── bob_private.pem
+│   └── bob_public.pem
+│
+├── resources/                   # (Optional) icons, UI assets, etc.
+│
+└── build/                       # Build output directory (auto generated)
+
 
 ```
 
