@@ -145,6 +145,8 @@ Peer: Hi!
 Click Disconnect to close the connection.
 
 
+**Disconnect firewall if using mobile hotspot.
+
 
 ##  GUI Overview
 
